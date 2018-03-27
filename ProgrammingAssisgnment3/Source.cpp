@@ -6,26 +6,100 @@
 
 using namespace std;
 
+const int REGULAR_HOURS = 40;
+
 int main()
 {
 	int choice;
 	char drive[2], disk_file[15], file[9];
 	ofstream outfile;
 
-	//input
+	char employeename[30];
+	char employeeid[10];
+	int employeeclass;
+	
+	int hoursworked;
+	int overtimehours;
+	
+	double hourlyrate;
+	double regularpay;
+	double overtimepay;
+	
+	double totalamount;
 
+
+	//input
+	
+	system("cls");
+	
+	cout << setw(20) << left << "WorkHard Corportation" << endl << endl;
+
+	cout << "Please enter your first and last name. "<< endl;
+	cin.getline(employeename, sizeof(employeename) - 1);
+
+	cout << "Please enter your Employee ID number. " << endl;
+	cin >> employeeid;
+
+	cout << "Please your Employee Job Classification Number. " << endl;
+	cin.ignore();
+	cin >> employeeclass;
+
+	cout << "Please enter the number of hours worked. " << endl;
+	cin.ignore();
+	cin >> hoursworked;
+
+	cout << endl << endl;
 
 	//process
+
+	switch (employeeclass)
+	{
+		case 1:
+		default:hourlyrate = 5.50;
+			break;
+
+		case 2:hourlyrate = 6.00;
+			break;
+
+		case 3:hourlyrate = 7.00;
+			break;
+
+		case 4:hourlyrate = 9.00;
+			break;
+
+		case 5:hourlyrate = 12.00;
+			break;
+	}
+
+	if (hoursworked < 40)
+	{
+		overtimehours = 0;
+		regularpay = hoursworked * hourlyrate;
+	}
+	else
+	{
+		overtimehours = 0;
+		regularpay = REGULAR_HOURS * hourlyrate;
+	}
+
+	if (hoursworked > 40)
+	{
+		overtimehours = hoursworked - REGULAR_HOURS;
+		overtimepay = (overtimehours) * 1.5 * hourlyrate;
+		totalamount = regularpay + overtimepay;
+	}
+	else
+	{
+		overtimepay = 0;
+		totalamount = regularpay;
+	}
+	
 
 
 	//output
 
 	system("cls");
-	cout << "Output choice: Enter 1 for file, 2 for screen";
-	cin >> choice;
-
-	system("cls");
-	cout << "Output to console (1) or disk file (2): ";
+	cout << "Output to Console (1) or Disk File (2): ";
 	cin >> choice;
 	if (choice == 1)
 	{
@@ -34,18 +108,49 @@ int main()
 	}
 	else
 	{
-		cout << "Which drive: a, b, or c? ";
+		cout << "Which drive: A, B, or C? ";
 		cin >> drive;
 		strcpy(disk_file, drive);
 		strcat(disk_file, ":");
 
-		cout << "Enter a results file name: ";
+		cout << "Enter a Results File Name: ";
 		cin >> file;
 		strcat(disk_file, file);
 		strcat(disk_file, ".txt");
 		outfile.open(disk_file);
 	}
 	outfile << setiosflags(ios::showpoint | ios::fixed) << setprecision(2);
+
+
+	outfile << setw(30) << left << "WorkHard Corporation Payroll" << endl << endl;
+
+	outfile << setw(20) << left << "Employee Name: " << setw(6) << right << employeename << endl;
+	outfile << setw(20) << left << "Employee ID: " << setw(6) << right << employeeid << endl;
+	outfile << setw(20) << left << "Employee Job Classification: " << setw(6) << right << employeeclass << endl;
+	cout << endl;
+	
+	outfile << setw(20) << left << "Hourly Rate: $ " << setw(6) << right << hourlyrate << endl;
+	outfile << setw(20) << left << "Total Hours Worked: " << setw(6) << right << hoursworked << endl;
+	outfile << setw(20) << left << "Overtime Hours: " << setw(6) << right << overtimehours << endl;
+	cout << endl;
+
+	outfile << setw(20) << left << "Regular Pay: $ " << setw(6) << right << regularpay << endl;
+	outfile << setw(20) << left << "Overtime Pay: $ " << setw(6) << right << overtimepay << endl;
+	cout << endl;
+
+	outfile << setw(20) << left << "Total Earnings: $ " << right << totalamount << endl;
+	cout << endl;
+	
+	if (hoursworked < REGULAR_HOURS)
+	{
+		outfile << setw(20) << left << "Inadequate Number of Hours Worked!" << right << endl;
+	}
+	
+	if (hoursworked > 60)
+	{
+		outfile << setw(20) << left << "Excessive Number of Hours Worked!" << right << endl;
+	}
+	cout << endl;
 
 	outfile.close();
 	cout << endl << endl;
