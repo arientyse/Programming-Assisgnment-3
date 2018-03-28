@@ -139,14 +139,18 @@ int main()
 	
 	outfile << left << setw(30) << "Employee ID:";
 	outfile	<< setw(30) << employeeid;
+
+	outfile << endl << endl;
 	
-	outfile << left << setw(30) << "Employee Job Classification:";
+	outfile << setw(30) << "Employee Job Classification:";
 	outfile	<< setw(30) << employeeclass;
 	
 
 	
-	outfile << left << setw(30) << "Hourly Rate: $";
+	outfile << setw(30) << "Hourly Rate: $";
 	outfile << setw(30) << hourlyrate;
+
+	outfile << endl << endl;
 	
 	outfile << left << setw(30) << "Total Hours Worked:";
 	outfile << setw(30) << hoursworked;
@@ -154,6 +158,7 @@ int main()
 	outfile << left << setw(30) << "Overtime Hours:";
 	outfile << setw(30) << overtimehours;
 	
+	outfile << endl << endl;
 	
 
 	outfile << left << setw(30) << "Regular Pay: $"; 
@@ -161,6 +166,7 @@ int main()
 	
 	outfile << left << setw(30) << "Overtime Pay: $";
 	outfile << setw(30) << overtimepay;
+
 
 	outfile << endl << endl;
 
