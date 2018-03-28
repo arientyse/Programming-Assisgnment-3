@@ -54,8 +54,7 @@ int main()
 
 	switch (employeeclass)
 	{
-		case 1:
-		default:hourlyrate = 5.50;
+		case 1:hourlyrate = 5.50;
 			break;
 
 		case 2:hourlyrate = 6.00;
@@ -69,6 +68,10 @@ int main()
 
 		case 5:hourlyrate = 12.00;
 			break;
+
+		default:hourlyrate = 5.50;
+			cout << "You did not enter one of the five Job Classifications! Hourly Rate set to $5.50." << endl;
+			
 	}
 
 	if (hoursworked < 40)
@@ -122,11 +125,16 @@ int main()
 	outfile << setiosflags(ios::showpoint | ios::fixed) << setprecision(2);
 
 
-	outfile << setw(30) << left << "WorkHard Corporation Payroll" << endl << endl;
+	outfile << right << setw(50) << "WorkHard Corporation Payroll" << endl << endl;
+	
 
-	outfile << setw(20) << left << "Employee Name: " << setw(6) << right << employeename << endl;
-	outfile << setw(20) << left << "Employee ID: " << setw(6) << right << employeeid << endl;
-	outfile << setw(20) << left << "Employee Job Classification: " << setw(6) << right << employeeclass << endl;
+	outfile << left << setw(20) << "Employee Name:";
+	outfile	<< setw(20) << employeename;
+	
+	outfile << setw(20) << "Employee ID: ";
+	outfile	<< setw(20) << employeeid;
+	
+	outfile << setw(20) << "Employee Job Classification: " << setw(6) << right << employeeclass << endl;
 	cout << endl;
 	
 	outfile << setw(20) << left << "Hourly Rate: $ " << setw(6) << right << hourlyrate << endl;
@@ -151,7 +159,7 @@ int main()
 		outfile << setw(20) << left << "Excessive Number of Hours Worked!" << right << endl;
 	}
 	cout << endl;
-
+	
 	outfile.close();
 	cout << endl << endl;
 	system("PAUSE");
