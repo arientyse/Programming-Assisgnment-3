@@ -32,17 +32,23 @@ int main()
 	
 	system("cls");
 	
-	cout << setw(20) << left << "WorkHard Corportation" << endl << endl;
+	cout << setw(20) << left << "WorkHard Corportation Payroll" << endl << endl;
 
 	cout << "Please enter your first and last name. "<< endl;
 	cin.getline(employeename, sizeof(employeename) - 1);
 
+	cout << endl;
+
 	cout << "Please enter your Employee ID number. " << endl;
 	cin >> employeeid;
+
+	cout << endl;
 
 	cout << "Please your Employee Job Classification Number. " << endl;
 	cin.ignore();
 	cin >> employeeclass;
+
+	cout << endl;
 
 	cout << "Please enter the number of hours worked. " << endl;
 	cin.ignore();
@@ -69,9 +75,8 @@ int main()
 		case 5:hourlyrate = 12.00;
 			break;
 
-		default:hourlyrate = 5.50;
-			cout << "You did not enter one of the five Job Classifications! Hourly Rate set to $5.50." << endl;
-			
+		default: hourlyrate = 5.50;
+					
 	}
 
 	if (hoursworked < 40)
@@ -125,40 +130,60 @@ int main()
 	outfile << setiosflags(ios::showpoint | ios::fixed) << setprecision(2);
 
 
-	outfile << right << setw(50) << "WorkHard Corporation Payroll" << endl << endl;
+	outfile << right << setw(70) << "WorkHard Corporation Payroll" << endl << endl;
+
+
+
+	outfile << left << setw(30) << "Employee Name:";
+	outfile	<< setw(30) << employeename;
+	
+	outfile << left << setw(30) << "Employee ID:";
+	outfile	<< setw(30) << employeeid;
+	
+	outfile << left << setw(30) << "Employee Job Classification:";
+	outfile	<< setw(30) << employeeclass;
 	
 
-	outfile << left << setw(20) << "Employee Name:";
-	outfile	<< setw(20) << employeename;
 	
-	outfile << setw(20) << "Employee ID: ";
-	outfile	<< setw(20) << employeeid;
+	outfile << left << setw(30) << "Hourly Rate: $";
+	outfile << setw(30) << hourlyrate;
 	
-	outfile << setw(20) << "Employee Job Classification: " << setw(6) << right << employeeclass << endl;
-	cout << endl;
-	
-	outfile << setw(20) << left << "Hourly Rate: $ " << setw(6) << right << hourlyrate << endl;
-	outfile << setw(20) << left << "Total Hours Worked: " << setw(6) << right << hoursworked << endl;
-	outfile << setw(20) << left << "Overtime Hours: " << setw(6) << right << overtimehours << endl;
-	cout << endl;
+	outfile << left << setw(30) << "Total Hours Worked:";
+	outfile << setw(30) << hoursworked;
 
-	outfile << setw(20) << left << "Regular Pay: $ " << setw(6) << right << regularpay << endl;
-	outfile << setw(20) << left << "Overtime Pay: $ " << setw(6) << right << overtimepay << endl;
-	cout << endl;
+	outfile << left << setw(30) << "Overtime Hours:";
+	outfile << setw(30) << overtimehours;
+	
+	
 
-	outfile << setw(20) << left << "Total Earnings: $ " << right << totalamount << endl;
-	cout << endl;
+	outfile << left << setw(30) << "Regular Pay: $"; 
+	outfile << setw(30) << regularpay;
+	
+	outfile << left << setw(30) << "Overtime Pay: $";
+	outfile << setw(30) << overtimepay;
+
+	outfile << endl << endl;
+
+	outfile << right << setw(60) << "Total Earnings: $" << totalamount << endl;
+	outfile << endl;
 	
 	if (hoursworked < REGULAR_HOURS)
 	{
-		outfile << setw(20) << left << "Inadequate Number of Hours Worked!" << right << endl;
+		outfile << right << setw(72) << "Inadequate Number of Hours Worked!" << endl;
 	}
 	
 	if (hoursworked > 60)
 	{
-		outfile << setw(20) << left << "Excessive Number of Hours Worked!" << right << endl;
+		outfile << right << setw(72) << "Excessive Number of Hours Worked!" << endl;
 	}
-	cout << endl;
+	
+	outfile << endl;
+	
+	if (hourlyrate > 5)
+	{
+		outfile << right << setw(70) << "Invalid Job Classification!" << endl;
+		outfile << right << setw(68) << " Class set to One: $5.50." << endl;
+	}
 	
 	outfile.close();
 	cout << endl << endl;
